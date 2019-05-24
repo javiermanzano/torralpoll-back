@@ -1,7 +1,7 @@
 
 module.exports = () => {
 	const start = async ({ logger, store }) => {
-		const create = async options => {
+		const create = async (name, options) => {
 			try {
 				const pollId = await store.create(name, options);
 				const res = { url: `http://localhost:3100/poll?id=${pollId}` };

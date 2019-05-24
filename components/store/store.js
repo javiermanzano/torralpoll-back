@@ -15,7 +15,7 @@ module.exports = () => {
 
 		const create = async (name, options) => {
 			const poll = {
-				name: name,
+				name,
 				active: true,
 				options: options.map(op => ({ name: op, votes: [] })),
 			};

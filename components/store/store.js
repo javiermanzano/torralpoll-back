@@ -13,8 +13,9 @@ module.exports = () => {
 			Poll = require('../../lib/store/models/poll');
 		});
 
-		const create = async options => {
+		const create = async (name, options) => {
 			const poll = {
+				name: name,
 				active: true,
 				options: options.map(op => ({ name: op, votes: [] })),
 			};
@@ -56,6 +57,7 @@ module.exports = () => {
 				const poll = await Poll.findOne({ _id: pollId });
 				return {
 					_id: poll._id,
+					name: poll.name,
 					active: poll.active,
 					options: poll.options.map(op => ({ votes: op.votes, name: op.name })),
 				};

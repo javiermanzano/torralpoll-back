@@ -38,10 +38,13 @@ module.exports = () => {
 				.catch(next);
 		});
 
-		app.get('/list', cors(), (res, next) => controller
-			.listAll()
-			.then(response => res.json(response))
-			.catch(next));
+		app.get('/list', cors(), (req, res, next) => {
+			console.log('tutia', req);
+			return controller
+				.listAll()
+				.then(response => res.json(response))
+				.catch(next);
+		});
 
 		app.post('/:id/vote', cors(), (req, res, next) => {
 			const { id } = req.params;

@@ -46,11 +46,23 @@ module.exports = () => {
 			}
 		};
 
+		const listAll = async () => {
+			try {
+				const res = await store.listAll();
+				return res;
+			} catch (err) {
+				logger.error(err);
+				const res = { res: 'Error listing polls' };
+				return res;
+			}
+		};
+
 		return {
 			create,
 			close,
 			details,
 			vote,
+			listAll,
 		};
 	};
 

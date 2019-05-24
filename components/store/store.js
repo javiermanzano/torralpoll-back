@@ -85,11 +85,29 @@ module.exports = () => {
 			}
 		};
 
+		const listAll = async () => {
+			try {
+				const polls = await Poll.find({ });
+				return {
+					polls: polls.map(p => ({
+						_id: p._id,
+						name: p.name,
+						active: p.active,
+						options: p.options.map(op => ({ votes: op.votes, name: op.name })),
+					})),
+				};
+			} catch (err) {
+				logger.error(err);
+				throw err;
+			}
+		};
+
 		return {
 			create,
 			updateVotes,
 			details,
 			close,
+			listAll,
 		};
 	};
 
